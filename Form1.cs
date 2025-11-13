@@ -66,6 +66,9 @@ namespace AutoRun
 
         private async void Form1_Load(object? sender, EventArgs e)
         {
+            // 暫時移除 SelectionChanged 事件處理，避免載入時觸發
+            dgvSchedules.SelectionChanged -= dgvSchedules_SelectionChanged;
+            
             var loaded = await Storage.LoadAsync();
             _items.Clear();
             foreach (var i in loaded)
@@ -83,8 +86,14 @@ namespace AutoRun
             dgvSchedules.ClearSelection();
             _selected = null;
             
+            // 清空輸入欄位內容
+            ClearInputs();
+            
             // 禁用所有輸入欄位，等待使用者按下「新增」或選擇項目
             DisableInputs();
+            
+            // 重新加入 SelectionChanged 事件處理
+            dgvSchedules.SelectionChanged += dgvSchedules_SelectionChanged;
         }
 
         private async void Form1_FormClosing(object? sender, FormClosingEventArgs e)
