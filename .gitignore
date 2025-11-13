@@ -1,0 +1,30 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.cache
+
+# Build results
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# User-specific files
+*.rsuser
+
+# Output files
+*.exe
+*.dll
+*.pdb
+
+# NuGet Packages
+*.nupkg
+packages/
+
+# Visual Studio Code
+.vscode/
+
+# User settings
+setting.json
+settings.json
