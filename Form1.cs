@@ -79,14 +79,12 @@ namespace AutoRun
             ApplySettingsToUI();
             ApplyToScheduler();
 
-            // 初始化新增表單的預設值
-            dtpTime.Value = DateTime.Today.AddHours(9);
-            chkEnabled.Checked = true;
-            chkEveryDay.Checked = true;
-            
             // 清除 Grid 的預設選擇，不顯示第一筆資料
             dgvSchedules.ClearSelection();
             _selected = null;
+            
+            // 禁用所有輸入欄位，等待使用者按下「新增」或選擇項目
+            DisableInputs();
         }
 
         private async void Form1_FormClosing(object? sender, FormClosingEventArgs e)
@@ -218,6 +216,7 @@ namespace AutoRun
         {
             _selected = null;
             dgvSchedules.ClearSelection();
+            EnableInputs();  // 啟用輸入欄位
             ClearInputs();
         }
 
@@ -314,6 +313,7 @@ namespace AutoRun
             _binding.ResetBindings(false);
 
             _selected = null;
+            DisableInputs();  // 刪除後禁用輸入欄位
             ClearInputs();
             ApplyToScheduler();
         }
@@ -330,14 +330,16 @@ namespace AutoRun
             if (dgvSchedules.CurrentRow?.DataBoundItem is ScheduleItem item)
             {
                 _selected = item;
+                EnableInputs();  // 啟用輸入欄位
                 LoadToInputs(item);
             }
             else
             {
-                // 當沒有選擇時，清除 _selected（但不清空輸入欄位）
+                // 當沒有選擇時，清除 _selected
                 if (dgvSchedules.Rows.Count == 0 || dgvSchedules.SelectedRows.Count == 0)
                 {
                     _selected = null;
+                    DisableInputs();  // 禁用輸入欄位
                 }
             }
         }
@@ -418,6 +420,48 @@ namespace AutoRun
         {
             _scheduler.SetItems(_items);
             UpdateTrayTextAndIcon();
+        }
+
+        private void EnableInputs()
+        {
+            txtName.Enabled = true;
+            txtExe.Enabled = true;
+            txtArgs.Enabled = true;
+            btnBrowse.Enabled = true;
+            dtpTime.Enabled = true;
+            chkEnabled.Enabled = true;
+            chkEveryDay.Enabled = true;
+            
+            // 星期選項根據「每天」的狀態決定
+            var enableDays = !chkEveryDay.Checked;
+            chkMon.Enabled = enableDays;
+            chkTue.Enabled = enableDays;
+            chkWed.Enabled = enableDays;
+            chkThu.Enabled = enableDays;
+            chkFri.Enabled = enableDays;
+            chkSat.Enabled = enableDays;
+            chkSun.Enabled = enableDays;
+            
+            btnAddUpdate.Enabled = true;
+        }
+
+        private void DisableInputs()
+        {
+            txtName.Enabled = false;
+            txtExe.Enabled = false;
+            txtArgs.Enabled = false;
+            btnBrowse.Enabled = false;
+            dtpTime.Enabled = false;
+            chkEnabled.Enabled = false;
+            chkEveryDay.Enabled = false;
+            chkMon.Enabled = false;
+            chkTue.Enabled = false;
+            chkWed.Enabled = false;
+            chkThu.Enabled = false;
+            chkFri.Enabled = false;
+            chkSat.Enabled = false;
+            chkSun.Enabled = false;
+            btnAddUpdate.Enabled = false;
         }
     }
 }
