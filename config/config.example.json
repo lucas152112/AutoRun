@@ -1,0 +1,7 @@
+{
+    "log_level": "INFO",
+    "log_file": "logs/autorun.log",
+    "check_interval": 60,
+    "max_retries": 3,
+    "retry_delay": 300
+}
