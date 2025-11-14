@@ -13,6 +13,7 @@ public class SchedulerService : IDisposable
     public bool IsRunning => _isRunning;
 
     public event EventHandler<string>? OnRun; // message when a process starts
+    public event EventHandler<string>? OnDebug; // debug messages for troubleshooting
 
     public SchedulerService()
     {
@@ -25,6 +26,7 @@ public class SchedulerService : IDisposable
         if (_isRunning) return;
         _isRunning = true;
         _timer.Change(0, 5000);
+        OnDebug?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 排程器已啟動，檢查間隔: 5秒");
     }
 
     public void Stop()
@@ -32,6 +34,7 @@ public class SchedulerService : IDisposable
         if (!_isRunning) return;
         _isRunning = false;
         _timer.Change(Timeout.Infinite, Timeout.Infinite);
+        OnDebug?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 排程器已停止");
     }
 
     public void SetItems(IEnumerable<ScheduleItem> items)
@@ -43,6 +46,8 @@ public class SchedulerService : IDisposable
             var ids = new HashSet<Guid>(_items.Select(i => i.Id));
             var toRemove = _lastFiredAtMinute.Keys.Where(k => !ids.Contains(k)).ToList();
             foreach (var k in toRemove) _lastFiredAtMinute.Remove(k);
+            
+            OnDebug?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 已載入 {_items.Count} 個排程項目");
         }
     }
 
@@ -68,8 +73,11 @@ public class SchedulerService : IDisposable
                 if (item.Days is null || item.Days.Count == 0) continue;
                 if (!item.Days.Contains(now.DayOfWeek)) continue;
 
-                // match HH:mm
-                if (now.Hour == item.TimeOfDay.Hours && now.Minute == item.TimeOfDay.Minutes)
+                // match HH:mm - 使用 TimeSpan 的 Hours 和 Minutes 屬性
+                var scheduleHour = item.TimeOfDay.Hours;
+                var scheduleMinute = item.TimeOfDay.Minutes;
+                
+                if (now.Hour == scheduleHour && now.Minute == scheduleMinute)
                 {
                     bool alreadyFired;
                     lock (_lock)
@@ -87,9 +95,10 @@ public class SchedulerService : IDisposable
                 }
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // swallow
+            // 記錄錯誤而不是吞掉
+            OnRun?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 排程器錯誤: {ex.Message}");
         }
     }
 
@@ -105,11 +114,11 @@ public class SchedulerService : IDisposable
                 WorkingDirectory = Path.GetDirectoryName(item.ExePath) ?? Environment.CurrentDirectory
             };
             Process.Start(psi);
-            OnRun?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm}] 啟動: {item.Name} -> {item.ExePath} {item.Arguments}");
+            OnRun?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 已啟動: {item.Name} -> {item.ExePath} {item.Arguments}");
         }
         catch (Exception ex)
         {
-            OnRun?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm}] 失敗: {item.Name} -> {ex.Message}");
+            OnRun?.Invoke(this, $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] 錯誤: {item.Name} -> {ex.Message}");
         }
     }
 

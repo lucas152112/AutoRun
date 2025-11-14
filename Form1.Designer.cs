@@ -32,10 +32,9 @@
         private System.Windows.Forms.GroupBox grpDays;
         private System.Windows.Forms.ListBox lstLog;
         private System.Windows.Forms.Label lblLog;
-        private System.Windows.Forms.CheckBox chkRunScheduler;
+        private System.Windows.Forms.Button btnToggleScheduler;
         private System.Windows.Forms.CheckBox chkMinToTray;
         private System.Windows.Forms.CheckBox chkRunAtStartup;
-        private System.Windows.Forms.CheckBox chkAutoStartOnMin;
         private System.Windows.Forms.CheckBox chkEveryDay;
 
         /// <summary>
@@ -82,13 +81,12 @@
             lblArgs = new Label();
             lblTime = new Label();
             grpDays = new GroupBox();
+            chkEveryDay = new CheckBox();
             lstLog = new ListBox();
             lblLog = new Label();
-            chkRunScheduler = new CheckBox();
+            btnToggleScheduler = new Button();
             chkMinToTray = new CheckBox();
             chkRunAtStartup = new CheckBox();
-            chkAutoStartOnMin = new CheckBox();
-            chkEveryDay = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).BeginInit();
             grpDays.SuspendLayout();
             SuspendLayout();
@@ -97,43 +95,39 @@
             // 
             dgvSchedules.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvSchedules.ColumnHeadersHeight = 29;
-            dgvSchedules.Location = new Point(15, 215);
-            dgvSchedules.Margin = new Padding(4);
+            dgvSchedules.Location = new Point(2, 168);
             dgvSchedules.MultiSelect = false;
             dgvSchedules.Name = "dgvSchedules";
             dgvSchedules.ReadOnly = true;
             dgvSchedules.RowHeadersVisible = false;
             dgvSchedules.RowHeadersWidth = 51;
             dgvSchedules.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvSchedules.Size = new Size(939, 466);
+            dgvSchedules.Size = new Size(730, 179);
             dgvSchedules.TabIndex = 0;
             dgvSchedules.SelectionChanged += dgvSchedules_SelectionChanged;
             // 
             // txtName
             // 
             txtName.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtName.Location = new Point(90, 15);
-            txtName.Margin = new Padding(4);
+            txtName.Location = new Point(70, 12);
             txtName.Name = "txtName";
-            txtName.Size = new Size(457, 27);
+            txtName.Size = new Size(265, 23);
             txtName.TabIndex = 1;
             // 
             // txtExe
             // 
             txtExe.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtExe.Location = new Point(90, 52);
-            txtExe.Margin = new Padding(4);
+            txtExe.Location = new Point(70, 41);
             txtExe.Name = "txtExe";
-            txtExe.Size = new Size(813, 27);
+            txtExe.Size = new Size(633, 23);
             txtExe.TabIndex = 2;
             // 
             // btnBrowse
             // 
             btnBrowse.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnBrowse.Location = new Point(912, 52);
-            btnBrowse.Margin = new Padding(4);
+            btnBrowse.Location = new Point(709, 41);
             btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(42, 29);
+            btnBrowse.Size = new Size(33, 23);
             btnBrowse.TabIndex = 3;
             btnBrowse.Text = "...";
             btnBrowse.UseVisualStyleBackColor = true;
@@ -142,30 +136,27 @@
             // txtArgs
             // 
             txtArgs.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            txtArgs.Location = new Point(90, 89);
-            txtArgs.Margin = new Padding(4);
+            txtArgs.Location = new Point(70, 70);
             txtArgs.Name = "txtArgs";
-            txtArgs.Size = new Size(863, 27);
+            txtArgs.Size = new Size(148, 23);
             txtArgs.TabIndex = 4;
             // 
             // dtpTime
             // 
             dtpTime.CustomFormat = "HH:mm";
             dtpTime.Format = DateTimePickerFormat.Custom;
-            dtpTime.Location = new Point(90, 125);
-            dtpTime.Margin = new Padding(4);
+            dtpTime.Location = new Point(70, 99);
             dtpTime.Name = "dtpTime";
             dtpTime.ShowUpDown = true;
-            dtpTime.Size = new Size(91, 27);
+            dtpTime.Size = new Size(72, 23);
             dtpTime.TabIndex = 5;
             // 
             // chkMon
             // 
             chkMon.AutoSize = true;
-            chkMon.Location = new Point(13, 28);
-            chkMon.Margin = new Padding(4);
+            chkMon.Location = new Point(12, 16);
             chkMon.Name = "chkMon";
-            chkMon.Size = new Size(46, 23);
+            chkMon.Size = new Size(38, 19);
             chkMon.TabIndex = 6;
             chkMon.Text = "一";
             chkMon.UseVisualStyleBackColor = true;
@@ -173,10 +164,9 @@
             // chkTue
             // 
             chkTue.AutoSize = true;
-            chkTue.Location = new Point(69, 28);
-            chkTue.Margin = new Padding(4);
+            chkTue.Location = new Point(56, 16);
             chkTue.Name = "chkTue";
-            chkTue.Size = new Size(46, 23);
+            chkTue.Size = new Size(38, 19);
             chkTue.TabIndex = 7;
             chkTue.Text = "二";
             chkTue.UseVisualStyleBackColor = true;
@@ -184,10 +174,9 @@
             // chkWed
             // 
             chkWed.AutoSize = true;
-            chkWed.Location = new Point(126, 28);
-            chkWed.Margin = new Padding(4);
+            chkWed.Location = new Point(100, 16);
             chkWed.Name = "chkWed";
-            chkWed.Size = new Size(46, 23);
+            chkWed.Size = new Size(38, 19);
             chkWed.TabIndex = 8;
             chkWed.Text = "三";
             chkWed.UseVisualStyleBackColor = true;
@@ -195,10 +184,9 @@
             // chkThu
             // 
             chkThu.AutoSize = true;
-            chkThu.Location = new Point(183, 28);
-            chkThu.Margin = new Padding(4);
+            chkThu.Location = new Point(144, 16);
             chkThu.Name = "chkThu";
-            chkThu.Size = new Size(46, 23);
+            chkThu.Size = new Size(38, 19);
             chkThu.TabIndex = 9;
             chkThu.Text = "四";
             chkThu.UseVisualStyleBackColor = true;
@@ -206,10 +194,9 @@
             // chkFri
             // 
             chkFri.AutoSize = true;
-            chkFri.Location = new Point(239, 28);
-            chkFri.Margin = new Padding(4);
+            chkFri.Location = new Point(188, 16);
             chkFri.Name = "chkFri";
-            chkFri.Size = new Size(46, 23);
+            chkFri.Size = new Size(38, 19);
             chkFri.TabIndex = 10;
             chkFri.Text = "五";
             chkFri.UseVisualStyleBackColor = true;
@@ -217,10 +204,9 @@
             // chkSat
             // 
             chkSat.AutoSize = true;
-            chkSat.Location = new Point(296, 28);
-            chkSat.Margin = new Padding(4);
+            chkSat.Location = new Point(232, 16);
             chkSat.Name = "chkSat";
-            chkSat.Size = new Size(46, 23);
+            chkSat.Size = new Size(38, 19);
             chkSat.TabIndex = 11;
             chkSat.Text = "六";
             chkSat.UseVisualStyleBackColor = true;
@@ -228,10 +214,9 @@
             // chkSun
             // 
             chkSun.AutoSize = true;
-            chkSun.Location = new Point(352, 28);
-            chkSun.Margin = new Padding(4);
+            chkSun.Location = new Point(276, 16);
             chkSun.Name = "chkSun";
-            chkSun.Size = new Size(46, 23);
+            chkSun.Size = new Size(38, 19);
             chkSun.TabIndex = 12;
             chkSun.Text = "日";
             chkSun.UseVisualStyleBackColor = true;
@@ -239,10 +224,9 @@
             // chkEnabled
             // 
             chkEnabled.AutoSize = true;
-            chkEnabled.Location = new Point(206, 128);
-            chkEnabled.Margin = new Padding(4);
+            chkEnabled.Location = new Point(653, 16);
             chkEnabled.Name = "chkEnabled";
-            chkEnabled.Size = new Size(61, 23);
+            chkEnabled.Size = new Size(50, 19);
             chkEnabled.TabIndex = 13;
             chkEnabled.Text = "啟用";
             chkEnabled.UseVisualStyleBackColor = true;
@@ -250,10 +234,9 @@
             // btnNew
             // 
             btnNew.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnNew.Location = new Point(555, 125);
-            btnNew.Margin = new Padding(4);
+            btnNew.Location = new Point(12, 139);
             btnNew.Name = "btnNew";
-            btnNew.Size = new Size(96, 29);
+            btnNew.Size = new Size(75, 23);
             btnNew.TabIndex = 14;
             btnNew.Text = "新增";
             btnNew.UseVisualStyleBackColor = true;
@@ -262,10 +245,9 @@
             // btnAddUpdate
             // 
             btnAddUpdate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddUpdate.Location = new Point(660, 125);
-            btnAddUpdate.Margin = new Padding(4);
+            btnAddUpdate.Location = new Point(93, 139);
             btnAddUpdate.Name = "btnAddUpdate";
-            btnAddUpdate.Size = new Size(96, 29);
+            btnAddUpdate.Size = new Size(75, 23);
             btnAddUpdate.TabIndex = 15;
             btnAddUpdate.Text = "加入/更新";
             btnAddUpdate.UseVisualStyleBackColor = true;
@@ -274,10 +256,9 @@
             // btnDelete
             // 
             btnDelete.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDelete.Location = new Point(764, 125);
-            btnDelete.Margin = new Padding(4);
+            btnDelete.Location = new Point(174, 139);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(96, 29);
+            btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 16;
             btnDelete.Text = "刪除";
             btnDelete.UseVisualStyleBackColor = true;
@@ -286,10 +267,9 @@
             // btnSave
             // 
             btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSave.Location = new Point(868, 125);
-            btnSave.Margin = new Padding(4);
+            btnSave.Location = new Point(255, 139);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(96, 29);
+            btnSave.Size = new Size(75, 23);
             btnSave.TabIndex = 17;
             btnSave.Text = "存檔";
             btnSave.UseVisualStyleBackColor = true;
@@ -298,40 +278,36 @@
             // lblName
             // 
             lblName.AutoSize = true;
-            lblName.Location = new Point(15, 19);
-            lblName.Margin = new Padding(4, 0, 4, 0);
+            lblName.Location = new Point(12, 15);
             lblName.Name = "lblName";
-            lblName.Size = new Size(39, 19);
+            lblName.Size = new Size(31, 15);
             lblName.TabIndex = 18;
             lblName.Text = "名稱";
             // 
             // lblExe
             // 
             lblExe.AutoSize = true;
-            lblExe.Location = new Point(15, 56);
-            lblExe.Margin = new Padding(4, 0, 4, 0);
+            lblExe.Location = new Point(12, 44);
             lblExe.Name = "lblExe";
-            lblExe.Size = new Size(39, 19);
+            lblExe.Size = new Size(31, 15);
             lblExe.TabIndex = 19;
             lblExe.Text = "程式";
             // 
             // lblArgs
             // 
             lblArgs.AutoSize = true;
-            lblArgs.Location = new Point(15, 92);
-            lblArgs.Margin = new Padding(4, 0, 4, 0);
+            lblArgs.Location = new Point(12, 73);
             lblArgs.Name = "lblArgs";
-            lblArgs.Size = new Size(39, 19);
+            lblArgs.Size = new Size(31, 15);
             lblArgs.TabIndex = 20;
             lblArgs.Text = "參數";
             // 
             // lblTime
             // 
             lblTime.AutoSize = true;
-            lblTime.Location = new Point(15, 130);
-            lblTime.Margin = new Padding(4, 0, 4, 0);
+            lblTime.Location = new Point(12, 103);
             lblTime.Name = "lblTime";
-            lblTime.Size = new Size(39, 19);
+            lblTime.Size = new Size(31, 15);
             lblTime.TabIndex = 21;
             lblTime.Text = "時間";
             // 
@@ -346,108 +322,87 @@
             grpDays.Controls.Add(chkFri);
             grpDays.Controls.Add(chkSat);
             grpDays.Controls.Add(chkSun);
-            grpDays.Location = new Point(15, 162);
-            grpDays.Margin = new Padding(4);
+            grpDays.Location = new Point(148, 93);
             grpDays.Name = "grpDays";
-            grpDays.Padding = new Padding(4);
-            grpDays.Size = new Size(942, 51);
+            grpDays.Size = new Size(390, 40);
             grpDays.TabIndex = 22;
             grpDays.TabStop = false;
             grpDays.Text = "星期";
+            // 
+            // chkEveryDay
+            // 
+            chkEveryDay.AutoSize = true;
+            chkEveryDay.Location = new Point(328, 14);
+            chkEveryDay.Name = "chkEveryDay";
+            chkEveryDay.Size = new Size(50, 19);
+            chkEveryDay.TabIndex = 29;
+            chkEveryDay.Text = "每天";
+            chkEveryDay.UseVisualStyleBackColor = true;
+            chkEveryDay.CheckedChanged += chkEveryDay_CheckedChanged;
             // 
             // lstLog
             // 
             lstLog.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
             lstLog.FormattingEnabled = true;
-            lstLog.ItemHeight = 19;
-            lstLog.Location = new Point(962, 209);
-            lstLog.Margin = new Padding(4);
+            lstLog.ItemHeight = 15;
+            lstLog.Location = new Point(738, 169);
             lstLog.Name = "lstLog";
-            lstLog.Size = new Size(415, 460);
+            lstLog.Size = new Size(324, 169);
             lstLog.TabIndex = 23;
             // 
             // lblLog
             // 
             lblLog.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblLog.AutoSize = true;
-            lblLog.Location = new Point(965, 186);
-            lblLog.Margin = new Padding(4, 0, 4, 0);
+            lblLog.Location = new Point(751, 147);
             lblLog.Name = "lblLog";
-            lblLog.Size = new Size(69, 19);
+            lblLog.Size = new Size(55, 15);
             lblLog.TabIndex = 24;
             lblLog.Text = "執行紀錄";
             // 
-            // chkRunScheduler
+            // btnToggleScheduler
             // 
-            chkRunScheduler.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            chkRunScheduler.AutoSize = true;
-            chkRunScheduler.Location = new Point(442, 128);
-            chkRunScheduler.Margin = new Padding(4);
-            chkRunScheduler.Name = "chkRunScheduler";
-            chkRunScheduler.Size = new Size(106, 23);
-            chkRunScheduler.TabIndex = 25;
-            chkRunScheduler.Text = "啟動排程器";
-            chkRunScheduler.UseVisualStyleBackColor = true;
-            chkRunScheduler.CheckedChanged += chkRunScheduler_CheckedChanged;
+            btnToggleScheduler.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnToggleScheduler.Location = new Point(657, 139);
+            btnToggleScheduler.Name = "btnToggleScheduler";
+            btnToggleScheduler.Size = new Size(75, 23);
+            btnToggleScheduler.TabIndex = 25;
+            btnToggleScheduler.Text = "啟動排程器";
+            btnToggleScheduler.UseVisualStyleBackColor = true;
+            btnToggleScheduler.Click += btnToggleScheduler_Click;
             // 
             // chkMinToTray
             // 
             chkMinToTray.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chkMinToTray.AutoSize = true;
-            chkMinToTray.Location = new Point(589, 19);
-            chkMinToTray.Margin = new Padding(4);
+            chkMinToTray.Location = new Point(362, 142);
             chkMinToTray.Name = "chkMinToTray";
-            chkMinToTray.Size = new Size(136, 23);
+            chkMinToTray.Size = new Size(110, 19);
             chkMinToTray.TabIndex = 26;
-            chkMinToTray.Text = "最小化至系統匣";
+            chkMinToTray.Text = "最小化至系統夾";
             chkMinToTray.UseVisualStyleBackColor = true;
+            chkMinToTray.CheckedChanged += chkMinToTray_CheckedChanged;
             // 
             // chkRunAtStartup
             // 
             chkRunAtStartup.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             chkRunAtStartup.AutoSize = true;
-            chkRunAtStartup.Location = new Point(782, 19);
-            chkRunAtStartup.Margin = new Padding(4);
+            chkRunAtStartup.Location = new Point(488, 142);
             chkRunAtStartup.Name = "chkRunAtStartup";
-            chkRunAtStartup.Size = new Size(121, 23);
+            chkRunAtStartup.Size = new Size(98, 19);
             chkRunAtStartup.TabIndex = 27;
             chkRunAtStartup.Text = "開機自動啟動";
             chkRunAtStartup.UseVisualStyleBackColor = true;
             chkRunAtStartup.CheckedChanged += chkRunAtStartup_CheckedChanged;
             // 
-            // chkAutoStartOnMin
-            // 
-            chkAutoStartOnMin.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            chkAutoStartOnMin.AutoSize = true;
-            chkAutoStartOnMin.Location = new Point(945, 19);
-            chkAutoStartOnMin.Margin = new Padding(4);
-            chkAutoStartOnMin.Name = "chkAutoStartOnMin";
-            chkAutoStartOnMin.Size = new Size(166, 23);
-            chkAutoStartOnMin.TabIndex = 28;
-            chkAutoStartOnMin.Text = "最小化自動啟動排程";
-            chkAutoStartOnMin.UseVisualStyleBackColor = true;
-            // 
-            // chkEveryDay
-            // 
-            chkEveryDay.AutoSize = true;
-            chkEveryDay.Location = new Point(878, 26);
-            chkEveryDay.Margin = new Padding(4);
-            chkEveryDay.Name = "chkEveryDay";
-            chkEveryDay.Size = new Size(61, 23);
-            chkEveryDay.TabIndex = 29;
-            chkEveryDay.Text = "每天";
-            chkEveryDay.UseVisualStyleBackColor = true;
-            chkEveryDay.CheckedChanged += chkEveryDay_CheckedChanged;
-            // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(9F, 19F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1394, 697);
-            Controls.Add(chkAutoStartOnMin);
+            ClientSize = new Size(1084, 348);
             Controls.Add(chkRunAtStartup);
             Controls.Add(chkMinToTray);
-            Controls.Add(chkRunScheduler);
+            Controls.Add(btnToggleScheduler);
             Controls.Add(lblLog);
             Controls.Add(lstLog);
             Controls.Add(grpDays);
@@ -466,9 +421,8 @@
             Controls.Add(txtExe);
             Controls.Add(txtName);
             Controls.Add(dgvSchedules);
-            Margin = new Padding(4);
             Name = "Form1";
-            Text = "自動啟動排程工具";
+            Text = "程式排程器 Ver:0.01";
             FormClosing += Form1_FormClosing;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSchedules).EndInit();
